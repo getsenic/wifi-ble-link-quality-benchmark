@@ -7,8 +7,8 @@
 # Firmware:			Broadcom BCM43xx 1.0 (7.21.171.68.1a5)
 # MAC Address:		6c:40:08:9f:31:3
 
-if [ $# -eq 0 ]; then	
-	echo "Enter the distance of receiver from the sender"
+if [ $# -lt 2 ]; then	
+	echo "Enter the distance of the receiver from the sender and type of antenna"	
 else
 	echo "===== Benchmarking Airport Extreme - MacBook Pro - MacOS 10.12.3 ====="
 	date_str="$(date +"%m-%d-%Y")"	
@@ -17,15 +17,16 @@ else
 	ssid="$(airport -I | grep " SSID" | cut -d":" -f 2 | sed 's/ //g')"
 	nic="airport-extreme"
 	distance=$1
+	antenna=$2
 
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $rssi_file_name ]; then		
-		echo "nic,ssid,distance,timestamp,rssi,noise,channel" > $rssi_file_name
+		echo "nic,antenna,ssid,distance,timestamp,rssi,noise,channel" > $rssi_file_name
 	fi
 
 	# Measure RSSI & Noise
 	echo -e "\n=> RSSI Scan"
-	no_of_samples="5"
+	no_of_samples=5
 	sampling_interval_in_sec=1
 	for ((i=0; i<=no_of_samples; i++)); 
 	do
@@ -36,18 +37,18 @@ else
 	   	channel="$(echo "$scan" | grep "channel" | cut -d":" -f 2 | sed 's/ //g' | tr "," ":")"
 
 	   	echo "RSSI:" $rssi, "Noise:" $noise, "Channel:" $channel
-		echo $nic,$ssid,$distance,$timestamp,$rssi,$noise,$channel >> $rssi_file_name
+		echo $nic,$antenna,$ssid,$distance,$timestamp,$rssi,$noise,$channel >> $rssi_file_name
 		sleep $sampling_interval_in_sec
 	done
 
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $ping_file_name ]; then		
-		echo "nic,ssid,distance,timestamp,ping_packet_size,ping_loss,ping_min,ping_avg,ping_max,ping_mdev" >> $ping_file_name
+		echo "nic,antenna,ssid,distance,timestamp,ping_packet_size,ping_loss,ping_min,ping_avg,ping_max,ping_mdev" >> $ping_file_name
 	fi		
 
 	# Measure packet statistics
 	echo -e "\n=> Ping Statistics"
-	ping_count=2
+	ping_count=5
 	ping_interval=0.5
 	ping_host="google.com"
 
@@ -64,7 +65,7 @@ else
 	echo "Packet Size:" $ping_packet_size "bytes, Packet Loss:" $ping_loss, "Min Time:" $ping_min,\
 	 "Average Time:" $ping_avg, "Max Time:" $ping_max, "mdev Time:" $ping_mdev
 
-	echo $nic,$ssid,$distance,$timestamp,$ping_packet_size,$ping_loss,$ping_min,$ping_avg,$ping_max,$ping_mdev >> $ping_file_name
+	echo $nic,$antenna,$ssid,$distance,$timestamp,$ping_packet_size,$ping_loss,$ping_min,$ping_avg,$ping_max,$ping_mdev >> $ping_file_name
 	
 	# 1024 bytes size packets
 	ping_packet_size=1024
@@ -79,5 +80,5 @@ else
 	echo "Packet Size:" $ping_packet_size "bytes, Packet Loss:" $ping_loss, "Min Time:" $ping_min,\
 	 "Average Time:" $ping_avg, "Max Time:" $ping_max, "mdev Time:" $ping_mdev
 
-	echo $nic,$ssid,$distance,$timestamp,$ping_packet_size,$ping_loss,$ping_min,$ping_avg,$ping_max,$ping_mdev >> $ping_file_name
+	echo $nic,$antenna,$ssid,$distance,$timestamp,$ping_packet_size,$ping_loss,$ping_min,$ping_avg,$ping_max,$ping_mdev >> $ping_file_name
 fi
