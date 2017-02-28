@@ -7,26 +7,34 @@
 # Firmware:			Broadcom BCM43xx 1.0 (7.21.171.68.1a5)
 # MAC Address:		6c:40:08:9f:31:3
 
+
+# Type of antenna
+# 1 = Internal
+# 2 = PCB
+# 3 = Dipole 2.4 Ghz
+
+
 if [ $# -lt 2 ]; then	
-	echo "Enter the distance of the receiver from the sender and type of antenna"	
+	echo "./airport-extreme.sh antenna-type receiver-distance"
+	echo "Enter the distance of the receiver from the sender and type of antenna"
 else
-	echo "===== Benchmarking Airport Extreme - MacBook Pro - MacOS 10.12.3 ====="
+	echo "= Benchmarking Airport Extreme - MacBook Pro - MacOS 10.12.3 ="
 	date_str="$(date +"%m-%d-%Y")"	
 	rssi_file_name="logs/airport-rssi-"$date_str".csv"
 	ping_file_name="logs/airport-ping-"$date_str".csv"	
 	ssid="$(airport -I | grep " SSID" | cut -d":" -f 2 | sed 's/ //g')"
 	nic="airport-extreme"
-	distance=$1
-	antenna=$2
+	antenna=$1
+	distance=$2
 
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $rssi_file_name ]; then		
-		echo "nic,antenna,ssid,distance,timestamp,rssi,noise,channel" > $rssi_file_name
+		echo "nic,antenna,ssid,distance,timestamp,rssi,noise,channel,snr" > $rssi_file_name
 	fi
 
 	# Measure RSSI & Noise
-	echo -e "\n=> RSSI Scan"
-	no_of_samples=5
+	echo -e "\n=> Scanning at distance" $distance "meters with SSID" $ssid
+	no_of_samples=30
 	sampling_interval_in_sec=1
 	for ((i=0; i<=no_of_samples; i++)); 
 	do
@@ -35,9 +43,10 @@ else
 	   	rssi="$(echo "$scan" | grep "agrCtlRSSI" | cut -d":" -f 2 | sed 's/ //g')"
 	   	noise="$(echo "$scan" | grep "agrCtlNoise" | cut -d":" -f 2 | sed 's/ //g')"
 	   	channel="$(echo "$scan" | grep "channel" | cut -d":" -f 2 | sed 's/ //g' | tr "," ":")"
+	   	snr=$((rssi - $noise))
 
-	   	echo "RSSI:" $rssi, "Noise:" $noise, "Channel:" $channel
-		echo $nic,$antenna,$ssid,$distance,$timestamp,$rssi,$noise,$channel >> $rssi_file_name
+	   	echo "RSSI:" $rssi, "Noise:" $noise, "SNR:" $snr, "Channel:" $channel
+		echo $nic,$antenna,$ssid,$distance,$timestamp,$rssi,$noise,$channel,$snr >> $rssi_file_name
 		sleep $sampling_interval_in_sec
 	done
 
@@ -48,7 +57,7 @@ else
 
 	# Measure packet statistics
 	echo -e "\n=> Ping Statistics"
-	ping_count=5
+	ping_count=30
 	ping_interval=0.5
 	ping_host="google.com"
 
