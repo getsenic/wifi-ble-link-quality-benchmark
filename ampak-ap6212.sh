@@ -10,9 +10,8 @@
 # Firmware:			Broadcom BCM43438
 
 # Type of antenna
-# 1 = Internal
-# 2 = PCB
-# 3 = Dipole 2.4 Ghz
+# 1 = PCB (P4204 4AEA01-L) Pulse Antenna PWB 3.9 Inch
+# 2 = 2.4Ghz Swivel Antenna
 
 
 if [ $# -lt 2 ]; then	
