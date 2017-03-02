@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-# File:            ampak-aggregator.py
 # Description:     Aggregate the logged RSSI from Ampak
 # Author:          Aravinth Panchadcharam
 

@@ -20,8 +20,8 @@ if [ $# -lt 2 ]; then
 else
 	echo "= Benchmark Ampak AP6212 on Nanopi Neo Air Ubuntu Core 3.4.39 Kernel ="
 	date_str="$(date +"%m-%d-%Y")"	
-	rssi_file_name="logs/ampak-rssi-"$date_str".csv"
-	ping_file_name="logs/ampak-ping-"$date_str".csv"	
+	rssi_file_name="logs/ampak-ap6212-rssi-"$date_str".csv"
+	ping_file_name="logs/ampak-ap6212-ping-"$date_str".csv"	
 	ssid="$(iwgetid | cut -d ":" -f 2 | tr -d ""\")"
 	nic="ampak-ap6212"
 	antenna=$1
