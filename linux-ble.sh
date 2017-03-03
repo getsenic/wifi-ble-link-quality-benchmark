@@ -1,37 +1,74 @@
 #!/bin/bash
 
-# Description:		Ble SNR 
+# Description:		BLE Benchmarking in Linux
 # Author:			Aravinth Panchadcharam
 
-ble_scan_log="logs/ble-scan.log"
-ble_notify_log="logs/ble-notify.log"
+if [ $# -lt 3 ]; then	
+	echo "./linux-ble.sh nic-name antenna-type receiver-distance"	
+else
+	nic=$1
+	antenna=$2
+	distance=$3
 
-# Run lescan every time because gatttool says "No route to host", if devices are not scanned
-hcitool lescan &> $ble_scan_log &
+	date_str="$(date +"%m-%d-%Y")"
+	ble_notify_log="logs/ble_notify.log"
+	ble_results_log="logs/"$nic"-ble-ping-"$date_str".csv"
+	logging_time=20
 
 
-# kill $(ps aux | grep 'gatttool' | grep -v grep | awk '{print $2}')
-# sleep 3
+	
+	# If file doesn't exists, then add comments and headers to CSV files
+	if [ ! -e $ble_results_log ]; then
+		echo "nic","antenna","distance","notify_count", "timestamp" > $ble_results_log
+	fi
 
+	# Run lescan every time because gatttool says "No route to host", if devices are not scanned
+	# hcitool lescan &> /dev/null &
+	# echo "Running hcitool lescan"
+	# sleep 3
+	# hcitool_pid="$(ps aux | grep 'hcitool' | grep -v grep | awk '{print $2}')"
+	# if [ "$hcitool_pid" != "" ]; then
+	# 	echo "Killing hcitool"
+	# 	kill $hcitool_pid
+	# 	sleep 1
+	# else
+	# 	echo "hcitool lescan failed"
+	# fi
 
+	# Kill if there is any existing gatttool
+	gatttool_pid="$(ps aux | grep 'gatttool' | grep -v grep | awk '{print $2}')"
+	if [ "$gatttool_pid" != "" ]; then
+		echo "Killing existing gatttool"
+		kill $gatttool_pid
+		sleep 1
+	fi
 
-# gatttool -b F9:8D:BB:F1:15:34 -t random --char-write-req -a 0x002c -n 01 --listen &> ble-snr.log &
-# sleep 3 
+	# Restart service and adapter because gatttool doesn't work after it is killed
+	service bluetooth restart
+	hciconfig hci0 reset
+	sleep 5
 
-# res="$(cat ble-snr.log | grep "No route to host" | wc -l)"
-# echo $res
+	# Run gatttool for given time to receive notifications	
+	echo "Running gatttool"
+	gatttool -b F9:8D:BB:F1:15:34 -t random --char-write-req -a 0x002c -n 01 --listen &> $ble_notify_log &
+	sleep $logging_time
+	gatttool_pid="$(ps aux | grep 'gatttool' | grep -v grep | awk '{print $2}')"
+	if [ "$gatttool_pid" != "" ]; then
+		echo "Killing gatttool"
+		kill $gatttool_pid
+		sleep 1
+	else
+		echo "gatttool failed"
+	fi
 
-# if [ $res -gt 0 ]; then
-# 	echo "Device not found; lescan"
-# 	
-# 	sleep 5
-# 	kill $(ps aux | grep 'hcitool' | grep -v grep | awk '{print $2}')
-# 	sleep 3
-# 	gatttool -b F9:8D:BB:F1:15:34 -t random --char-write-req -a 0x002c -n 01 --listen &> ble-snr.log &
-# fi
+	# Get statistics
+	timestamp="$(date +"%s")"
+	notify_count="$(cat "$ble_notify_log" | grep Notification | wc -l)"	
 
-# sleep 10
-# kill $(ps aux | grep 'gatttool' | grep -v grep | awk '{print $2}') > /dev/null 2>&1
-# sleep 3
-# res="$(cat ble-snr.log | grep Notification | wc -l)"
-# echo $res
+	echo "Notification count:" $notify_count
+	echo $nic,$antenna,$distance,$notify_count,$timestamp >> $ble_results_log
+
+	if [ "$notify_count" == 0 ]; then
+		echo "====> RERUN THE SCRIPT"
+	fi
+fi
