@@ -1,18 +1,7 @@
 #!/bin/bash
 
-# Description:		Benchmark Airport Extreme - MacBook Pro - MacOS 10.12.3
+# Description:		BLE Benchmarking in OSX
 # Author:			Aravinth Panchadcharam
-
-# Card Type:		AirPort Extreme  (0x14E4, 0x134)
-# Firmware:			Broadcom BCM43xx 1.0 (7.21.171.68.1a5)
-# MAC Address:		6c:40:08:9f:31:3
-
-
-# Type of antenna
-# 1 = Internal
-# 2 = PCB
-# 3 = Dipole 2.4 Ghz
-
 
 if [ $# -lt 2 ]; then	
 	echo "./airport-extreme.sh antenna-type receiver-distance"

@@ -3,17 +3,6 @@
 # Description:		WiFi Benchmarking in Linux
 # Author:			Aravinth Panchadcharam
 
-# Platform:			NanoPi Neo Air
-# OS:				Ubuntu 16.04.1 LTS (Ubuntu Core with Qt Embedded by Friendly ARM)
-# Kernel:			3.4.39
-# Card Type:		Ampak AP6212
-# Firmware:			Broadcom BCM43438
-
-# Type of antenna
-# 1 = PCB (P4204 4AEA01-L) Pulse Antenna PWB 3.9 Inch
-# 2 = 2.4Ghz Swivel Antenna
-
-
 if [ $# -lt 3 ]; then	
 	echo "./linux-wifi.sh nic-name antenna-type receiver-distance"
 else
