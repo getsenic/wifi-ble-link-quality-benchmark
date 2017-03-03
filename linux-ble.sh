@@ -15,25 +15,12 @@ else
 	ble_results_log="logs/"$nic"-ble-ping-"$date_str".csv"
 	logging_time=20
 
-
+	echo -e "\n=> Scanning BLE at distance" $distance "meters with NIC "$nic
 	
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $ble_results_log ]; then
-		echo "nic","antenna","distance","notify_count", "timestamp" > $ble_results_log
-	fi
-
-	# Run lescan every time because gatttool says "No route to host", if devices are not scanned
-	# hcitool lescan &> /dev/null &
-	# echo "Running hcitool lescan"
-	# sleep 3
-	# hcitool_pid="$(ps aux | grep 'hcitool' | grep -v grep | awk '{print $2}')"
-	# if [ "$hcitool_pid" != "" ]; then
-	# 	echo "Killing hcitool"
-	# 	kill $hcitool_pid
-	# 	sleep 1
-	# else
-	# 	echo "hcitool lescan failed"
-	# fi
+		echo "nic","antenna","distance","notify_count","timestamp" > $ble_results_log
+	fi	
 
 	# Kill if there is any existing gatttool
 	gatttool_pid="$(ps aux | grep 'gatttool' | grep -v grep | awk '{print $2}')"

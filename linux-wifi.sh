@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Description:		Benchmark Ampak AP6212 on Nanopi Neo Air Ubuntu Core 3.4.39 Kernel 
+# Description:		WiFi Benchmarking in Linux
 # Author:			Aravinth Panchadcharam
 
 # Platform:			NanoPi Neo Air
@@ -14,18 +14,17 @@
 # 2 = 2.4Ghz Swivel Antenna
 
 
-if [ $# -lt 2 ]; then	
-	echo "./airport-extreme.sh antenna-type receiver-distance"
-	echo "Enter the distance of the receiver from the sender and type of antenna"
+if [ $# -lt 3 ]; then	
+	echo "./linux-wifi.sh nic-name antenna-type receiver-distance"
 else
-	echo "= Benchmark Ampak AP6212 on Nanopi Neo Air Ubuntu Core 3.4.39 Kernel ="
+	nic=$1
+	antenna=$2
+	distance=$3
+
 	date_str="$(date +"%m-%d-%Y")"	
-	rssi_file_name="logs/ampak-ap6212-rssi-"$date_str".csv"
-	ping_file_name="logs/ampak-ap6212-ping-"$date_str".csv"	
-	ssid="$(iwgetid | cut -d ":" -f 2 | tr -d ""\")"
-	nic="ampak-ap6212"
-	antenna=$1
-	distance=$2
+	rssi_file_name="logs/"$nic"-wifi-rssi-"$date_str".csv"
+	ping_file_name="logs/"$nic"-wifi-ping-"$date_str".csv"	
+	ssid="$(iwgetid | cut -d ":" -f 2 | tr -d ""\")"	
 
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $rssi_file_name ]; then		
@@ -33,7 +32,7 @@ else
 	fi
 
 	# Measure RSSI & link_quality
-	echo -e "\n=> Scanning at distance" $distance "meters with SSID" $ssid
+	echo -e "\n=> Scanning WiFi at distance" $distance "meters with SSID" $ssid "with NIC "$nic
 	no_of_samples=30
 	sampling_interval_in_sec=1
 	for ((i=0; i<=no_of_samples; i++)); 
