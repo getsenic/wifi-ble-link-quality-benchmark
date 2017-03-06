@@ -7,7 +7,7 @@ import csv
 import datetime as dt
 import time
 
-log_file_name = 'logs/ampak-rssi-03-01-2017'
+log_file_name = 'logs/ampak-ap6212-wifi-rssi-03-03-2017'
 log_file = open(log_file_name + '.csv', "rb")
 reader = csv.reader(log_file)
 
