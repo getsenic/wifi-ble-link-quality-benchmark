@@ -15,6 +15,8 @@ else
 	ping_file_name="logs/"$nic"-wifi-ping-"$date_str".csv"	
 	ssid="$(iwgetid | cut -d ":" -f 2 | tr -d ""\")"	
 
+	# ########## RSSI ##########
+
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $rssi_file_name ]; then		
 		echo "nic,antenna,ssid,distance,timestamp,rssi,link_quality,channel,link_quality_in_percentage" > $rssi_file_name
@@ -37,6 +39,8 @@ else
 		echo $nic,$antenna,$ssid,$distance,$timestamp,$rssi,$link_quality,$channel,$link_quality_in_percentage >> $rssi_file_name
 		sleep $sampling_interval_in_sec
 	done
+
+	########## PING ##########
 
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $ping_file_name ]; then		

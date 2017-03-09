@@ -4,11 +4,12 @@
 # Author:			Aravinth Panchadcharam
 
 if [ $# -lt 3 ]; then	
-	echo "./linux-ble.sh nic-name antenna-type receiver-distance"	
+	echo "./linux-ble.sh nic-name usb/uart antenna-type receiver-distance"	
 else
 	nic=$1
-	antenna=$2
-	distance=$3
+	nic_type=$2
+	antenna=$3
+	distance=$4
 	hci_usb="$(hciconfig | grep USB | cut -d ":" -f1)"
 	hci_uart="$(hciconfig | grep UART | cut -d ":" -f1)"
 
@@ -23,7 +24,24 @@ else
 
 	echo -e "\n=> Scanning BLE at distance" $distance "meters with NIC "$nic
 
-	################################
+	########## RSSI ##########
+
+	# Restart service and adapter because gatttool doesn't work after it is killed
+	echo -e "\nRestarting Bluetooth service and reset HCI adapter"
+	sudo service bluetooth restart
+	
+	if [ $nic_type == "usb" ]; then		
+		echo "Using external USB Bluetooth adapter"
+		sudo hciconfig $hci_usb reset
+		sudo hciconfig $hci_uart down
+		sudo hciconfig $hci_usb up	
+	else
+		echo "Using internal UART Bluetooth adapter"
+		sudo hciconfig $hci_uart reset		
+		sudo hciconfig $hci_uart up
+	fi
+
+	sleep 5
 
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $ble_rssi_log ]; then
@@ -83,7 +101,7 @@ else
 		sleep 1
 	fi
 
-	# ################################
+	########## PING ##########
 
 	# If file doesn't exists, then add comments and headers to CSV files
 	if [ ! -e $ble_ping_log ]; then
@@ -101,33 +119,47 @@ else
 	# Restart service and adapter because gatttool doesn't work after it is killed
 	echo -e "\nRestarting Bluetooth service and reset HCI adapter"
 	sudo service bluetooth restart
-	sudo hciconfig $hci_usb reset
-	sudo hciconfig $hci_uart down
-	sudo hciconfig $hci_usb up
+	
+	if [ $nic_type == "usb" ]; then		
+		echo "Using external USB Bluetooth adapter"
+		sudo hciconfig $hci_usb reset
+		sudo hciconfig $hci_uart down
+		sudo hciconfig $hci_usb up	
+	else
+		echo "Using internal UART Bluetooth adapter"
+		sudo hciconfig $hci_uart reset		
+		sudo hciconfig $hci_uart up
+	fi
+
 	sleep 5
 
 	# Run gatttool for given time to receive notifications	
 	echo -e "\nConnecting to Nuimo via gatttool"
 	sudo gatttool -b F9:8D:BB:F1:15:34 -t random --char-write-req -a 0x002c -n 01 --listen &> $ble_notify_log &	
 	sleep $logging_time
+
+	# Stop scanning and aggregate ping
 	gatttool_pid="$(ps aux | grep 'gatttool' | grep -v grep | awk '{print $2}')"
 	if [ "$gatttool_pid" != "" ]; then
 		echo "Closing connection"
 		sudo kill $gatttool_pid
 		sleep 1
+
+		# Get statistics
+		timestamp="$(date +"%s")"
+		notify_count="$(cat "$ble_notify_log" | grep Notification | wc -l)"	
+
+		echo -e "\nNotification count:" $notify_count
+		echo $nic,$antenna,$distance,$notify_count,$timestamp >> $ble_ping_log
+
 	else
 		echo "Connection failed"
+		notify_count="$(cat "$ble_notify_log" | grep Notification | wc -l)"	
+
+		if [ "$notify_count" == 0 ]; then
+			echo "====> RERUN THE SCRIPT"
+			cat $ble_notify_log
+		fi
 	fi
 
-	# Get statistics
-	timestamp="$(date +"%s")"
-	notify_count="$(cat "$ble_notify_log" | grep Notification | wc -l)"	
-
-	echo -e "\nNotification count:" $notify_count
-	echo $nic,$antenna,$distance,$notify_count,$timestamp >> $ble_ping_log
-
-	if [ "$notify_count" == 0 ]; then
-		echo "====> RERUN THE SCRIPT"
-		cat $ble_notify_log
-	fi
 fi
