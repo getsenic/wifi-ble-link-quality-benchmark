@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Description:     Aggregate the logged RSSI from Ampak
+# Description:     Aggregate WiFi RSSI
 # Author:          Aravinth Panchadcharam
 
 import csv
