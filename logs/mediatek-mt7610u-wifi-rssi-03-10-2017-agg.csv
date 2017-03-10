@@ -1,0 +1,14 @@
+nic,antenna,ssid,distance,rssi,link_quality,channel,link_quality_in_percentage
+mediatek-mt7610u,1,senic-sandbox,0,-46,64,4,91
+mediatek-mt7610u,1,senic-sandbox,1,-40,68,4,98
+mediatek-mt7610u,1,senic-sandbox,2,-40,69,4,98
+mediatek-mt7610u,1,senic-sandbox,3,-40,69,4,99
+mediatek-mt7610u,1,senic-sandbox,4,-51,59,4,85
+mediatek-mt7610u,1,senic-sandbox,5,-47,63,4,89
+mediatek-mt7610u,1,senic-sandbox,6,-49,61,4,87
+mediatek-mt7610u,1,senic-sandbox,7,-52,58,4,82
+mediatek-mt7610u,1,senic-sandbox,8,-51,59,4,85
+mediatek-mt7610u,1,senic-sandbox,9,-53,57,4,81
+mediatek-mt7610u,1,senic-sandbox,10,-51,59,4,85
+mediatek-mt7610u,1,senic-sandbox,11,-57,53,4,75
+mediatek-mt7610u,1,senic-sandbox,12,-66,44,4,63

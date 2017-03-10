@@ -1,0 +1,14 @@
+nic,antenna,ssid,distance,rssi,link_quality,channel,link_quality_in_percentage
+ralink-rt5370,1,senic-sandbox,12,-67,43,4,62
+ralink-rt5370,1,senic-sandbox,11,-66,44,4,62
+ralink-rt5370,1,senic-sandbox,10,-62,48,4,68
+ralink-rt5370,1,senic-sandbox,9,-59,51,4,72
+ralink-rt5370,1,senic-sandbox,8,-58,52,4,73
+ralink-rt5370,1,senic-sandbox,7,-50,60,4,86
+ralink-rt5370,1,senic-sandbox,6,-49,61,4,87
+ralink-rt5370,1,senic-sandbox,5,-49,61,4,87
+ralink-rt5370,1,senic-sandbox,4,-44,66,4,93
+ralink-rt5370,1,senic-sandbox,3,-57,53,4,76
+ralink-rt5370,1,senic-sandbox,2,-36,70,4,100
+ralink-rt5370,1,senic-sandbox,1,-37,70,4,100
+ralink-rt5370,1,senic-sandbox,0,-39,69,4,99

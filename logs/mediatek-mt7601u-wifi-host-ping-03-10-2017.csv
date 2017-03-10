@@ -1,0 +1,5 @@
+nic,antenna,distance,timestamp,ping_packet_size,ping_loss,ping_min,ping_avg,ping_max,ping_mdev
+mediatek-mt7601u,1,10,1489152317,64,0.0,2.082,5.587,13.389,3.357
+mediatek-mt7601u,1,10,1489152346,1024,0.0,2.957,6.093,14.238,2.737
+mediatek-mt7601u,1,10,1489155193,64,46.7,2.572,24.784,312.978,74.585
+mediatek-mt7601u,1,10,1489155224,1024,16.7,3.481,43.981,563.549,120.984

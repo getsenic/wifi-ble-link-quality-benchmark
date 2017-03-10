@@ -1,0 +1,5 @@
+nic,antenna,distance,timestamp,ping_packet_size,ping_loss,ping_min,ping_avg,ping_max,ping_mdev
+realtek-rtl8188eu,1,10,1489153810,64,3.3,3.543,17.939,53.987,14.586
+realtek-rtl8188eu,1,10,1489153841,1024,0.0,6.763,17.539,52.659,11.874
+realtek-rtl8188eu,1,10,1489153902,64,0.0,5.965,24.233,119.766,23.005
+realtek-rtl8188eu,1,10,1489153931,1024,0.0,7.114,35.694,244.181,46.089
