@@ -1,0 +1,3 @@
+nic,antenna,distance,timestamp,ping_packet_size,ping_loss,ping_min,ping_avg,ping_max,ping_mdev
+orange-pi-zero,1,3,1489141049,64,0.0,22.635,235.332,617.368,178.733
+orange-pi-zero,1,3,1489141078,1024,0.0,9.272,292.005,1003.937,253.630

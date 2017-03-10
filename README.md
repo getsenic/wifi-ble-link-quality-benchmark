@@ -3,14 +3,49 @@
 ## Test Platforms
 ### MacBook Pro (Mid 2014)
 - OS: MacOS 10.12.3
-- NIC: AirPort Extreme  (0x14E4, 0x134)
-- Driver: Broadcom BCM43xx 1.0 (7.21.171.68.1a5)
+- NIC: AirPort Extreme
+- Driver: bcm43xx
 
-### NanoPi Neo Air
+### [NanoPi Neo Air](http://wiki.friendlyarm.com/wiki/index.php/NanoPi_NEO_Air)
 - OS: Ubuntu 16.04.1 LTS (Ubuntu Core with Qt Embedded by Friendly ARM)
 - Kernel: 3.4.39
-- NIC: Ampak AP6212
-- Driver: Broadcom BCM43438
+- NIC: [Ampak AP6212](http://wiki.friendlyarm.com/wiki/images/5/57/AP6212_V1.1_09022014.pdf)
+- Driver: bcm43438
+
+### [DragonBoard 410c](http://www.96boards.org/product/dragonboard410c)
+- OS: Linaro Debian Jessie
+- Kernel: 4.4.23
+- NIC: [Qualcomm WCN3620](https://developer.qualcomm.com/download/sd410/wcn3620-wireless-connectivity-ic-device-revision-guide.pdf)
+- Driver: wcn36xx
+
+### [C.H.I.P Pro](https://docs.getchip.com/chip_pro.html)
+- OS: Debian Builtroot
+- Kernel: 
+- NIC: [Realtek RTL8723DS](https://github.com/NextThingCo/RTL8723DS)
+- Driver: rtl8723DS
+
+### [Onion Omega2+](https://docs.onion.io/omega2-docs/first-time-setup.html)
+- OS: OpenWrt
+- Kernel: 
+- NIC: []()
+- Driver: 
+
+### [BeagleBone Green Wireless](http://wiki.seeed.cc/BeagleBone_Green_Wireless)
+- OS: Debian 
+- Kernel: 
+- NIC: [Texas Instruments (TI) WL1835MOD](http://www.ti.com/product/WL1835MOD)
+- Driver: wl18xx
+
+### [FreeTec Ultra-Mini Bluetooth-USB-Dongle](https://www.amazon.de/dp/B0052CJNDG)
+- NIC: [Cambridge Silicon Radio (CSR) 8510 A10](http://www.csr.com/products/bluecore-csr8510-a10-wlcsp)
+- Driver: btusb
+
+### [Orange Pi Zero](http://www.orangepi.org/orangepizero)
+- OS: Armbian Ubuntu Jessie 
+- Kernel: 3.4.113-sun8i
+- NIC: [Allwinner XR819]()
+- Driver: xradio
+
 
 ## Antenna Mapping
 - 1 => PCB Pulse Antenna PWB 3.9 Inch - W3525B039 - [Datasheet](http://www.mouser.com/ds/2/336/-268322.pdf)
@@ -23,6 +58,7 @@
 
 
 ## Benchmark
+### NanoPi Neo Air
 2.4 GHz WiFi Link Quality Benchmark on NanoPi Neo Air with Ampak AP6212 WiFi/BLE Combo Module (BCM43438). Measurements were carried out in linearly distributed spatial points with different antennas. Measurement consists of scanning RSSI and Link Quality metrics from "/proc/net/wireless" in Linux.
 
 <p align="center">
