@@ -3,7 +3,7 @@
 # Description:		BLE Benchmarking in Linux
 # Author:			Aravinth Panchadcharam
 
-if [ $# -lt 3 ]; then	
+if [ $# -lt 4 ]; then	
 	echo "./linux-ble.sh nic-name usb/uart antenna-type receiver-distance"	
 else
 	nic=$1

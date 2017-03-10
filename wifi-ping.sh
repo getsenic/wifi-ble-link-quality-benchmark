@@ -3,7 +3,7 @@
 # Description:		WiFi Host Reachability Benchmark
 # Author:			Aravinth Panchadcharam
 
-if [ $# -lt 3 ]; then	
+if [ $# -lt 4 ]; then	
 	echo "./wifi-ping.sh host-nic-name host-antenna-type host-ip host-distance"
 else
 	nic=$1

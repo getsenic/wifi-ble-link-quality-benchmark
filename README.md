@@ -36,15 +36,31 @@
 - NIC: [Texas Instruments (TI) WL1835MOD](http://www.ti.com/product/WL1835MOD)
 - Driver: wl18xx
 
-### [FreeTec Ultra-Mini Bluetooth-USB-Dongle](https://www.amazon.de/dp/B0052CJNDG)
-- NIC: [Cambridge Silicon Radio (CSR) 8510 A10](http://www.csr.com/products/bluecore-csr8510-a10-wlcsp)
-- Driver: btusb
-
 ### [Orange Pi Zero](http://www.orangepi.org/orangepizero)
 - OS: Armbian Ubuntu Jessie 
 - Kernel: 3.4.113-sun8i
 - NIC: [Allwinner XR819]()
 - Driver: xradio
+
+### [FreeTec Ultra-Mini Bluetooth-USB-Dongle](https://www.amazon.de/dp/B0052CJNDG)
+- NIC: [Cambridge Silicon Radio (CSR) 8510 A10](http://www.csr.com/products/bluecore-csr8510-a10-wlcsp)
+- Driver: btusb
+
+### [MAXAH WLAN Dongle USB](https://www.amazon.de/Adapter-Wireless-drahtlos-802-11b-Stick-Aktionspreis/dp/B010V6WKSM)
+- NIC: [MediaTek MT7601U](https://www.mediatek.com/products/broadbandWifi/mt7601u)
+- Driver: mt7601u
+- Maximum Current (MxPWR): 160 mA
+
+### [TP-Link TL-WN725N Nano WLAN USB](https://www.amazon.de/TP-Link-TL-WN725N-Adapter-150Mbit-geeignet/dp/B008IFXQFU)
+- NIC: [Realtek RTL8188EU](http://www.cnping.com/wp-content/uploads/2015/09/RTL8188CUS_DataSheet_1.01.pdf)
+- Driver: r8188eu
+- Maximum Current (MxPWR): 500 mA
+
+### [Racksoy Professionell Wifi Dongle USB ](https://www.amazon.de/Racksoy-Professionell-Wireless-Kompatibel-Raspberry/dp/B00X538ONY)
+- NIC: [Ralink (MediaTek) RT5370](https://wikidevi.com/wiki/Ralink)
+- Driver: rt2800usb
+- Maximum Current (MxPWR): 450 mA
+- Transmit Power: 17 dBm
 
 
 ## Antenna Mapping

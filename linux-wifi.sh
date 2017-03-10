@@ -3,12 +3,13 @@
 # Description:		WiFi Benchmarking in Linux
 # Author:			Aravinth Panchadcharam
 
-if [ $# -lt 3 ]; then	
-	echo "./linux-wifi.sh nic-name antenna-type receiver-distance"
+if [ $# -lt 4 ]; then	
+	echo "./linux-wifi.sh nic-name antenna-type wlan-interface receiver-distance"
 else
 	nic=$1
 	antenna=$2
-	distance=$3
+	wlan_interface=$3
+	distance=$4
 	echo -e "\n=> WiFi Benchmarking at distance" $distance "meters with NIC "$nic
 
 	date_str="$(date +"%m-%d-%Y")"	
@@ -34,11 +35,11 @@ else
 	for ((i=0; i<=rssi_count; i++)); 
 	do
 		timestamp="$(date +"%s")"
-		scan="$(iwconfig wlan0)"
+		scan="$(iwconfig $wlan_interface)"
 	   	rssi="$(echo "$scan" | grep Signal | cut -d "=" -f3 | tr -d " dBm")"
 	   	link_quality="$(echo "$scan" | grep Signal | cut -d "=" -f2 | cut -d " " -f 1 | cut -d "/" -f 1)"
 	   	link_quality_in_percentage=$((link_quality * 100 / 70))
-	   	channel="$(iwlist wlan0 channel | grep Current | cut -d "(" -f 2 | cut -d " " -f2 | tr -d ")")"
+	   	channel="$(iwlist $wlan_interface channel | grep Current | cut -d "(" -f 2 | cut -d " " -f2 | tr -d ")")"
 	   	
 	   	echo "RSSI:" $rssi, "Link Quality:" $link_quality "("$link_quality_in_percentage "%)", "Channel:" $channel
 		echo $nic,$antenna,$ssid,$distance,$timestamp,$rssi,$link_quality,$channel,$link_quality_in_percentage >> $rssi_log
@@ -59,7 +60,7 @@ else
 	# 64 bytes size packets
 	ping_packet_size=64
 	timestamp="$(date +"%s")"
-	ping_results="$(ping -c $ping_count -i $ping_interval -s $ping_packet_size $ping_host)"
+	ping_results="$(ping -c $ping_count -i $ping_interval -s $ping_packet_size -I $wlan_interface $ping_host)"
 	ping_loss="$(echo "$ping_results" | grep "loss" | cut -d "," -f3 | cut -d "%" -f1 | sed 's/ //g')"
 	ping_min="$(echo "$ping_results" | grep max | cut -d "=" -f2 | sed 's/ //g' | cut -d "/" -f1)"
 	ping_avg="$(echo "$ping_results" | grep max | cut -d "=" -f2 | sed 's/ //g' | cut -d "/" -f2)"
@@ -74,7 +75,7 @@ else
 	# 1024 bytes size packets
 	ping_packet_size=1024
 	timestamp="$(date +"%s")"
-	ping_results="$(ping -c $ping_count -i $ping_interval -s $ping_packet_size $ping_host)"
+	ping_results="$(ping -c $ping_count -i $ping_interval -s $ping_packet_size -I $wlan_interface $ping_host)"
 	ping_loss="$(echo "$ping_results" | grep "loss" | cut -d "," -f3 | cut -d "%" -f1 | sed 's/ //g')"
 	ping_min="$(echo "$ping_results" | grep max | cut -d "=" -f2 | sed 's/ //g' | cut -d "/" -f1)"
 	ping_avg="$(echo "$ping_results" | grep max | cut -d "=" -f2 | sed 's/ //g' | cut -d "/" -f2)"
