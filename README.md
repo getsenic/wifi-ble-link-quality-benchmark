@@ -70,7 +70,7 @@
 - 3 => PCB Pulse Antenna PWB 10 Inch - W3525B100 - [Datasheet](http://www.mouser.com/ds/2/336/-268322.pdf)
 - 4 => Taoglas Ceramic Patch Antenna - WPC.25A.07.0150C - [Datasheet](http://www.mouser.com/ds/2/398/WPC.25A.07.0150C-13093.pdf)
 - 5 => 2.4GHz Aristotle Antenna 150 mm RFA02-L2H1 - TRF1001 - [Datasheet](http://www.mouser.com/ds/2/268/microchip_RFA-02-L2H1-519877.pdf)
-- 6 => PCB Flex Ground Coupled Antenna - FXP72.07.0053A - [Datasheet](http://www.mouser.de/ProductDetail/Taoglas/FXP72070053A)
+- 6 => PCB Flex Ground Coupled Antenna - FXP72.07.0053A - [Datasheet](http://www.mouser.com/ds/2/398/FXP72.07.0053A%202.4GHz%20Flex%20Circuit%20PCB%20050110-20322.pdf)
 - 7 => 2.4GHz Dipole Swvl Antenna 104 mm - 0600-00057 - [Datasheet](http://www.mouser.de/ProductDetail/Laird-Technologies/0600-00057)
 
 ## TestBench
@@ -87,6 +87,22 @@ WiFi Link Quality Benchmark on NanoPi Neo Air with Ampak AP6212 WiFi/BLE Combo M
 <p align="center">
 <img src="./plot/ampak-ap6212-wifi-ping.png"/>
 </p>
+
+#### 2.4GHz Dipole Swvl Antenna 205 mm Vs PCB Pulse Antenna PWB 10 Inch
+<p align="center">
+<img src="./plot/ampak-ap6212-wifi-ping-0.png"/>
+</p>
+
+#### PCB Pulse Antenna PWB 3.9 Inch Vs PCB Pulse Antenna PWB 10 Inch
+<p align="center">
+<img src="./plot/ampak-ap6212-wifi-ping-2.png"/>
+</p>
+
+#### PCB Pulse Antenna PWB 3.9 Inch Vs PCB Flex Ground Coupled Antenna
+<p align="center">
+<img src="./plot/ampak-ap6212-wifi-ping-1.png"/>
+</p>
+
 
 ### WiFi USB Dongle
 Packet loss of WiFi USB dongles with chipset of MediaTek MT7601U, Realtek RTL8188EU and Ralink RT5370 were measured by pinging (ICMP Message) to a host in internet with 64 Bytes and 1024 Bytes packets 30 times. **MediaTek MT7601U performed very well** by having 6% packet loss only at 12th meter as shown in the graph below.
