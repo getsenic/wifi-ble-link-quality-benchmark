@@ -73,10 +73,16 @@
 - 6 => PCB Flex Ground Coupled Antenna - FXP72.07.0053A - [Datasheet](http://www.mouser.de/ProductDetail/Taoglas/FXP72070053A)
 - 7 => 2.4GHz Dipole Swvl Antenna 104 mm - 0600-00057 - [Datasheet](http://www.mouser.de/ProductDetail/Laird-Technologies/0600-00057)
 
+## TestBench
+Testbench is created by linearly distributing spatial points where measurements are carried out as shown in the image below. Wireless router of 2.4 GHz is placed at reference location and marked as 0th meter. There is a huge architectural beam between 7th and 8th meter. System Under Test (SUT) is moved manually with power plugged in and connected to a host computer via Serial Port.
 
-## Benchmark
+<p align="center">
+<img src="./docs/test-bench.png" width="80%" />
+</p>
+
+## Benchmark Results
 ### NanoPi Neo Air
-2.4 GHz WiFi Link Quality Benchmark on NanoPi Neo Air with Ampak AP6212 WiFi/BLE Combo Module (BCM43438). Measurements were carried out in linearly distributed spatial points with different antennas. Measurement consists of scanning RSSI and Link Quality metrics from "/proc/net/wireless" in Linux.
+WiFi Link Quality Benchmark on NanoPi Neo Air with Ampak AP6212 WiFi/BLE Combo Module (BCM43438). Measurements were carried out at marked measurement points with different antennas. Measurement consists of scanning RSSI and Link Quality metrics from "/proc/net/wireless" in Linux.
 
 <p align="center">
 <img src="./plot/ampak-ap6212-wifi.png"/>
