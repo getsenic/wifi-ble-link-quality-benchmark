@@ -87,3 +87,17 @@ WiFi Link Quality Benchmark on NanoPi Neo Air with Ampak AP6212 WiFi/BLE Combo M
 <p align="center">
 <img src="./plot/ampak-ap6212-wifi.png"/>
 </p>
+
+### WiFi USB Dongle
+Packet loss of WiFi USB dongles with chipset of MediaTek MT7601U, Realtek RTL8188EU and Ralink RT5370 were measured by pinging (ICMP Message) to a host in internet with 64 Bytes and 1024 Bytes packets 30 times. **MediaTek MT7601U performed very well** by having 6% packet loss only at 12th meter as shown in the image below.
+
+<p align="center">
+<img src="./plot/packet-loss-wifi-usb-dongle.png"/>
+</p>
+
+Average ping time with different dongles are shown below. 30 counts of ICMP messages with packet size of 64 Bytes and 1024 Bytes are pinged. **MediaTek MT7601U** had consistently the same ping time shown in the image below.
+
+<p align="center">
+<img src="./plot/ping-time-wifi-usb-dongle.png"/>
+</p>
+
