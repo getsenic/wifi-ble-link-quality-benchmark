@@ -8,9 +8,10 @@
 
 ### [NanoPi Neo Air](http://wiki.friendlyarm.com/wiki/index.php/NanoPi_NEO_Air)
 - OS: Ubuntu 16.04.1 LTS (Ubuntu Core with Qt Embedded by Friendly ARM)
-- Kernel: 3.4.39
+- Kernel: 3.4.39-h3
 - NIC: [Ampak AP6212](http://wiki.friendlyarm.com/wiki/images/5/57/AP6212_V1.1_09022014.pdf)
 - Driver: bcm43438
+- [Board Bringup](./docs/board-bringup.md#nanopi)
 
 ### [DragonBoard 410c](http://www.96boards.org/product/dragonboard410c)
 - OS: Linaro Debian Jessie
