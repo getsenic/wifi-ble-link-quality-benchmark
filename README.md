@@ -1,5 +1,8 @@
 # WiFi and BLE Link Quality Benchmarking
 
+## Author
+Aravinth Panchadcharam
+
 ## Test Platforms
 ### MacBook Pro (Mid 2014)
 - OS: MacOS 10.12.3
