@@ -1,0 +1,7 @@
+nic,antenna,ssid,distance,timestamp,ping_packet_size,ping_loss,ping_min,ping_avg,ping_max,ping_mdev
+mediatek-mt7610u,1,senic-sandbox,0,1490015625,64,0,6.840,13.051,24.777,4.744
+mediatek-mt7610u,1,senic-sandbox,0,1490015639,1024,0,8.959,15.761,43.637,6.771
+mediatek-mt7610u,1,senic-sandbox,0,1490015695,64,0,8.950,14.236,44.774,7.438
+mediatek-mt7610u,1,senic-sandbox,0,1490015710,1024,0,10.084,18.002,61.668,10.655
+mediatek-mt7610u,1,senic-sandbox,9,1490016015,64,0,7.036,18.403,99.734,16.985
+mediatek-mt7610u,1,senic-sandbox,9,1490016030,1024,0,8.112,14.287,25.071,4.601

@@ -133,10 +133,16 @@ BLE master (CSR 8510) connects to BLE Peripheral at reference location and subsc
 However another test was carried out where peripheral continuously sent packets to a master that has initiated the connection at 0th meter and **master was able to keep the connection more than 25 meters with 40% packet loss.**
 
 
-
-
 <p align="center">
 <img src="./plot/csr-8510-ble-ping.png"/>
+</p>
+
+
+### Coexistence of WiFi and Bluetooth USB dongles in close proximity
+WiFi dongle (MediaTek MT7601U) and BLE dongle (CSR 8510) were attached to USB ports of the host system which are located close to each other. Test was carried out to examine whether both antennas of USB dongles interfere with each other while both interfaces are actively sending/receiving. Coexistence of WiFi & BLE USB dongles didn’t interfere at all. They had zero packet-loss and good RSSI as shown in the graph.
+
+<p align="center">
+<img src="./plot/csr-mediatek-wifi-ble.png"/>
 </p>
 
 
