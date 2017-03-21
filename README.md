@@ -53,19 +53,26 @@ Aravinth Panchadcharam
 ### [MAXAH WLAN Dongle USB](https://www.amazon.de/Adapter-Wireless-drahtlos-802-11b-Stick-Aktionspreis/dp/B010V6WKSM)
 - NIC: [MediaTek MT7601U](https://www.mediatek.com/products/broadbandWifi/mt7601u)
 - Driver: mt7601u
-- Maximum Current (MxPWR): 160 mA
 
 ### [TP-Link TL-WN725N Nano WLAN USB](https://www.amazon.de/TP-Link-TL-WN725N-Adapter-150Mbit-geeignet/dp/B008IFXQFU)
-- NIC: [Realtek RTL8188EU](http://www.cnping.com/wp-content/uploads/2015/09/RTL8188CUS_DataSheet_1.01.pdf)
+- NIC: [Realtek RTL8188EUS](http://www.cnping.com/wp-content/uploads/2015/09/RTL8188CUS_DataSheet_1.01.pdf)
 - Driver: r8188eu
-- Maximum Current (MxPWR): 500 mA
 
 ### [Racksoy Professionell Wifi Dongle USB ](https://www.amazon.de/Racksoy-Professionell-Wireless-Kompatibel-Raspberry/dp/B00X538ONY)
 - NIC: [Ralink (MediaTek) RT5370](https://wikidevi.com/wiki/Ralink)
 - Driver: rt2800usb
-- Maximum Current (MxPWR): 450 mA
-- Transmit Power: 17 dBm
 
+### [CSL 300 Mbit/s WLAN Stick Gold Edition C103 with external Antenna](https://www.amazon.de/gp/product/B00B4TUEYI)
+- NIC: [Realtek RTL8191SU](http://www.realtek.com.tw/products/productsView.aspx?Conn=4&Langid=1&Level=5&PFid=48&ProdID=229)
+- Driver: r8712u
+
+### [Supremery - 2 in1 WLAN Stick 150Mbps USB - WiFi/BLE Combo](https://www.amazon.de/gp/product/B01H3AA7U2)
+- NIC: [Realtek]()
+- Bluetooth Driver: rtl8723b
+
+### [Philonext Wifi Dongle 600Mbps, AC600Mbps Dual Band](https://www.amazon.de/gp/product/B01H3AA7U2)
+- NIC: [Realtek RTL8811AU](https://github.com/gnab/rtl8812au)
+- Bluetooth Driver: r8812au
 
 ## Antenna Mapping
 - 1 => PCB Pulse Antenna PWB 3.9 Inch - W3525B039 - [Datasheet](http://www.mouser.com/ds/2/336/-268322.pdf)
