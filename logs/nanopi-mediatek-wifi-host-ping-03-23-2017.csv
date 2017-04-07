@@ -1,0 +1,2 @@
+nic,antenna,distance,timestamp,ping_packet_size,ping_loss,ping_min,ping_avg,ping_max,ping_mdev
+nanopi-mediatek,1,1,1490268746,64,0.0,3.424,56.353,825.199,149.720

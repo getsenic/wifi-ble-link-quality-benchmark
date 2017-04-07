@@ -46,7 +46,7 @@ Aravinth Panchadcharam
 - NIC: [Allwinner XR819]()
 - Driver: xradio
 
-### [FreeTec Ultra-Mini Bluetooth-USB-Dongle](https://www.amazon.de/dp/B0052CJNDG)
+### [FINOO USB nano Bluetooth-Adapter V4.0](https://www.amazon.de/dp/B0173EFI02)
 - NIC: [Cambridge Silicon Radio (CSR) 8510 A10](http://www.csr.com/products/bluecore-csr8510-a10-wlcsp)
 - Driver: btusb
 
